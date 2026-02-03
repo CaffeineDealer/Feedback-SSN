@@ -3,7 +3,7 @@ import numpy as np
 from setup import Stim
 from polarmosaic import polarmosaic
 
-dir = np.arange(0,45,45)
+dir = np.arange(0, 360, 45)
 R = np.zeros([dir.size])
 for i in range(dir.size):
     s = Stim('complex',dir[i],1,500) 
@@ -19,4 +19,3 @@ baseline = np.min(R)
 themax = np.max(R)  
 rg = np.array([baseline - (themax - baseline),themax])
 polarmosaic(R,rg,1,.35) 
-# %%

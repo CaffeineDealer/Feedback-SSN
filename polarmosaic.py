@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.cm import ScalarMappable
-from matplotlib.colors import Normalize
+from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 
 def polarmosaic(y,rg,r1,r2):
     precision = 8
@@ -16,16 +16,28 @@ def polarmosaic(y,rg,r1,r2):
         xs[:,i] = xc
         ys[:,i] = yc
 
-    fig, ax = plt.subplots()
-    colors = plt.cm.jet(y)
-    for i in range(xs.shape[1]):
-        ax.fill(xs[:,i], ys[:,i], color=colors[i,:], clip_on=False)
+    baseline = (themin + themax) / 2  
+    colors = ['blue', 'white', 'red']
+    cmap = LinearSegmentedColormap.from_list('custom', colors, N=256)
 
-    norm = Normalize(vmin=themin, vmax=themax)
-    sm = ScalarMappable(norm=norm, cmap='jet')
+    fig, ax = plt.subplots()
+    colors_mapped = cmap(y)
+    for i in range(xs.shape[1]):
+        ax.fill(xs[:,i], ys[:,i], color=colors_mapped[i,:], clip_on=False)
+
+    norm = TwoSlopeNorm(vmin=themin, vcenter=baseline, vmax=themax)
+    sm = ScalarMappable(norm=norm, cmap=cmap)
     cbar = plt.colorbar(sm, ax=ax)
-    cbar.set_label('Normalized Value')
+    cbar.set_label('Response Value')
     plt.show()
+    # colors = plt.cm.jet(y)
+    # for i in range(xs.shape[1]):
+    #     ax.fill(xs[:,i], ys[:,i], color=colors[i,:], clip_on=False)
+
+    # norm = Normalize(vmin=themin, vmax=themax)
+    # sm = ScalarMappable(norm=norm, cmap='jet')
+    # cbar = plt.colorbar(sm, ax=ax)
+    # # cbar.set_label('Normalized Value')
     return
 
 def wedgecoords(t1,t2,r1,r2,precision):

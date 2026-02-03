@@ -124,7 +124,7 @@ class Stim:
             
             dotpos = dotpos.astype(int)
         
-        # fig = plt.figure(1)
+        #fig = plt.figure(1)
         for i in range(nframe):
             I = np.zeros(h.screensize, dtype=np.int32)
             x = np.squeeze(dotpos[1,:,i])
@@ -136,7 +136,7 @@ class Stim:
                 plt.pause(1/h.framerate)
                 plt.clf()
             elif pltflag == 'off':
-                print('Please wait')
+                print('Please wait: Drawing Visual Stimuli')
                 # plt.close()
         return dotpos,motvec
     
@@ -264,10 +264,10 @@ class Stim:
                 bwspeeds[l,k,:] = bwspeed
                 sigmass[l,k,:] = sigmas
         Xout = np.max(np.squeeze(X), axis=2)
-        fig = plt.figure(3)
-        plt.plot(Xout[0,:],'k')
-        plt.plot(Xout[1,:],'r')
-        plt.plot(Xout[2,:],'b')
+        # fig = plt.figure(3)
+        # plt.plot(Xout[0,:],'k')
+        # plt.plot(Xout[1,:],'r')
+        # plt.plot(Xout[2,:],'b')
         h.xs = xs
         h.ys = ys
         h.thetas = thetas
