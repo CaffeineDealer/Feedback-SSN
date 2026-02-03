@@ -24,4 +24,4 @@ Generates random dot motion stimuli at different directions, processes through M
 
 ## Credits
 
-`setup.py` and `polarmosaic.py` adapted from Matlab scripts by [Shahab Bakhtiari][https://github.com/ShahabBakht/VPL-Model]
+`setup.py` and `polarmosaic.py` adapted from Matlab scripts by [Shahab Bakhtiari](https://github.com/ShahabBakht/VPL-Model)
